@@ -1,182 +1,359 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Snake Adventure - Level 1-10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Truth or Dare 4 Pemain</title>
 
 <style>
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #111;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #12002b, #4b0082, #1a0033);
     color: white;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 15px;
 }
 
-.game {
-    width: min(560px, 100%);
+.container {
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    padding: 20px;
+}
+
+.logo {
     text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
-h1 {
-    margin: 8px 0 12px;
-    font-size: 28px;
+.logo span {
+    color: #ffcc00;
 }
 
-.info {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 7px;
-    margin-bottom: 10px;
+.subtitle {
+    text-align: center;
+    color: #ddd;
+    margin-bottom: 25px;
 }
 
 .box {
-    background: #222;
-    border: 1px solid #444;
-    border-radius: 10px;
-    padding: 8px;
-    font-size: 14px;
+    background: rgba(255,255,255,0.10);
+    padding: 20px;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
-.box b {
-    display: block;
-    font-size: 20px;
-    margin-top: 3px;
+h2 {
+    text-align: center;
+    margin-top: 0;
 }
 
-canvas {
+input {
     width: 100%;
-    max-width: 520px;
-    aspect-ratio: 1 / 1;
-    background: #07120a;
-    border: 3px solid #555;
+    padding: 15px;
+    margin: 7px 0;
+    border: none;
     border-radius: 12px;
-    display: block;
-    margin: auto;
-    touch-action: none;
-}
-
-.actions {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 12px;
+    font-size: 16px;
 }
 
 button {
-    border: 0;
-    border-radius: 10px;
-    background: #333;
-    color: white;
-    font-size: 15px;
+    width: 100%;
+    padding: 16px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 14px;
+    font-size: 18px;
     font-weight: bold;
-    height: 45px;
-    padding: 0 15px;
     cursor: pointer;
 }
 
-button:active {
-    transform: scale(.95);
+.start {
+    background: #00e676;
+    color: #003b1c;
 }
 
-#start {
-    background: #16803c;
+.truth {
+    background: #2196f3;
+    color: white;
 }
 
-#pause {
-    background: #555;
+.dare {
+    background: #ff1744;
+    color: white;
 }
 
-#restart {
-    background: #8b2222;
+.next {
+    background: #ffcc00;
+    color: #332800;
 }
 
-.controls {
-    margin: 15px auto 0;
+.reset {
+    background: white;
+    color: #222;
+}
+
+.players {
     display: grid;
-    grid-template-columns: repeat(3, 70px);
-    gap: 7px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.player {
+    background: rgba(255,255,255,0.12);
+    padding: 12px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.player.active {
+    border: 3px solid #00e676;
+    box-shadow: 0 0 15px #00e676;
+}
+
+.player .emoji {
+    font-size: 30px;
+}
+
+.player .name {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.player .score {
+    color: #ffcc00;
+    margin-top: 5px;
+}
+
+.turn {
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.card {
+    background: rgba(0,0,0,0.35);
+    border-radius: 18px;
+    padding: 25px 15px;
+    min-height: 170px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+
+    text-align: center;
 }
 
-.controls button {
-    height: 55px;
-    font-size: 23px;
-    padding: 0;
+.card-title {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
-.empty {
-    visibility: hidden;
-}
-
-.message {
-    min-height: 25px;
-    margin-top: 12px;
-    color: #ddd;
-    font-size: 14px;
+.question {
+    font-size: 20px;
     line-height: 1.4;
+}
+
+.points {
+    color: #00e676;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.choice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.choice button {
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.footer {
+    text-align: center;
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+@media(max-width: 380px) {
+
+    .logo {
+        font-size: 40px;
+    }
+
+    .question {
+        font-size: 18px;
+    }
+
+    .turn {
+        font-size: 18px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="game">
+<div class="container">
 
-    <h1>🐍 Snake Adventure</h1>
+    <!-- ========================= -->
+    <!-- HALAMAN UTAMA -->
+    <!-- ========================= -->
 
-    <div class="info">
-        <div class="box">
-            LEVEL
-            <b id="level">1</b>
+    <div id="menu">
+
+        <div class="logo">
+            TRUTH <span>OR</span> DARE
+        </div>
+
+        <div class="subtitle">
+            🔥 Party Game • 4 Pemain
         </div>
 
         <div class="box">
-            SKOR
-            <b id="score">0</b>
+
+            <h2>👥 Masukkan Nama Pemain</h2>
+
+            <input id="player1" type="text" placeholder="👤 Pemain 1">
+
+            <input id="player2" type="text" placeholder="👤 Pemain 2">
+
+            <input id="player3" type="text" placeholder="👤 Pemain 3">
+
+            <input id="player4" type="text" placeholder="👤 Pemain 4">
+
+            <button class="start" onclick="startGame()">
+                🚀 MULAI GAME
+            </button>
+
         </div>
+
+        <div class="footer">
+            Truth or Dare Multiplayer 4 Pemain
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- HALAMAN GAME -->
+    <!-- ========================= -->
+
+    <div id="game" class="hidden">
+
+        <div class="logo">
+            🔥 TOD
+        </div>
+
+        <div class="subtitle">
+            Truth or Dare
+        </div>
+
+
+        <!-- PLAYER -->
+
+        <div class="players">
+
+            <div id="playerBox0" class="player">
+                <div class="emoji">😎</div>
+                <div id="name0" class="name">Player 1</div>
+                <div id="score0" class="score">0 Poin</div>
+            </div>
+
+            <div id="playerBox1" class="player">
+                <div class="emoji">😈</div>
+                <div id="name1" class="name">Player 2</div>
+                <div id="score1" class="score">0 Poin</div>
+            </div>
+
+            <div id="playerBox2" class="player">
+                <div class="emoji">🤪</div>
+                <div id="name2" class="name">Player 3</div>
+                <div id="score2" class="score">0 Poin</div>
+            </div>
+
+            <div id="playerBox3" class="player">
+                <div class="emoji">🤠</div>
+                <div id="name3" class="name">Player 4</div>
+                <div id="score3" class="score">0 Poin</div>
+            </div>
+
+        </div>
+
+
+        <!-- GILIRAN -->
+
+        <div class="turn">
+            🎯 Giliran:
+            <span id="turnName">Player 1</span>
+        </div>
+
+
+        <!-- PILIHAN -->
 
         <div class="box">
-            TARGET
-            <b id="target">5</b>
+
+            <h2>Pilih Tantangan</h2>
+
+            <div class="choice">
+
+                <button class="truth" onclick="truth()">
+                    💙 TRUTH
+                </button>
+
+                <button class="dare" onclick="dare()">
+                    ❤️ DARE
+                </button>
+
+            </div>
+
+
+            <!-- HASIL -->
+
+            <div id="card" class="card">
+
+                <div class="card-title">
+                    🎲 SIAP?
+                </div>
+
+                <div class="question">
+                    Pilih Truth atau Dare
+                </div>
+
+            </div>
+
+
+            <!-- NEXT -->
+
+            <button class="next" onclick="nextPlayer()">
+                ➡️ PEMAIN BERIKUTNYA
+            </button>
+
+            <button class="reset" onclick="backToMenu()">
+                🏠 KEMBALI KE MENU
+            </button>
+
         </div>
-    </div>
 
-    <canvas id="game" width="520" height="520"></canvas>
-
-    <div class="actions">
-        <button id="start">▶ Mulai</button>
-        <button id="pause">⏸ Pause</button>
-        <button id="restart">🔄 Ulangi</button>
-    </div>
-
-    <div class="controls">
-
-        <button class="empty">.</button>
-
-        <button data-dir="up">⬆️</button>
-
-        <button class="empty">.</button>
-
-        <button data-dir="left">⬅️</button>
-
-        <button data-dir="down">⬇️</button>
-
-        <button data-dir="right">➡️</button>
-
-    </div>
-
-    <div class="message" id="message">
-        Tekan Mulai untuk bermain
     </div>
 
 </div>
@@ -184,1035 +361,344 @@ button:active {
 
 <script>
 
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+/* =========================
+   DATA GAME
+========================= */
 
-const N = 26;
-const cell = canvas.width / N;
+let names = [];
 
-const levelEl = document.getElementById("level");
-const scoreEl = document.getElementById("score");
-const targetEl = document.getElementById("target");
-const messageEl = document.getElementById("message");
+let scores = [0, 0, 0, 0];
 
-const startButton = document.getElementById("start");
-const pauseButton = document.getElementById("pause");
-const restartButton = document.getElementById("restart");
+let currentPlayer = 0;
 
 
-/*
-    TARGET MAKANAN SETIAP LEVEL
-*/
+/* =========================
+   TRUTH
+========================= */
 
-const targets = [
-    5,   // Level 1
-    8,   // Level 2
-    10,  // Level 3
-    12,  // Level 4
-    15,  // Level 5
-    18,  // Level 6
-    20,  // Level 7
-    25,  // Level 8
-    30,  // Level 9
-    40   // Level 10
+const truths = [
+
+    "Siapa orang terakhir yang kamu chat hari ini?",
+
+    "Apa hal paling memalukan yang pernah kamu lakukan?",
+
+    "Siapa orang yang paling sering kamu pikirkan?",
+
+    "Apa kebiasaan aneh yang kamu punya?",
+
+    "Apa ketakutan terbesar kamu?",
+
+    "Pernahkah kamu berbohong kepada temanmu?",
+
+    "Apa makanan yang paling tidak kamu suka?",
+
+    "Siapa pemain di sini yang paling kamu percaya?",
+
+    "Siapa pemain di sini yang paling lucu?",
+
+    "Apa impian terbesar kamu?",
+
+    "Kalau punya Rp100 juta, apa yang akan kamu beli?",
+
+    "Apa hal yang paling kamu sesali?",
+
+    "Pernahkah kamu menyukai seseorang secara diam-diam?",
+
+    "Apa hal pertama yang kamu lakukan setelah bangun tidur?",
+
+    "Apa rahasia kecil yang boleh kamu ceritakan sekarang?"
+
 ];
 
 
-/*
-    KECEPATAN ULAR
-    Semakin kecil = semakin cepat
-*/
+/* =========================
+   DARE
+========================= */
 
-const speeds = [
-    180,
-    165,
-    150,
-    135,
-    120,
-    105,
-    90,
-    75,
-    60,
-    45
+const dares = [
+
+    "Joget selama 20 detik tanpa musik.",
+
+    "Tirukan suara ayam selama 15 detik.",
+
+    "Nyanyikan lagu favoritmu dengan gaya opera.",
+
+    "Buat ekspresi wajah paling aneh selama 10 detik.",
+
+    "Lakukan 10 kali squat.",
+
+    "Tirukan gaya pemain lain selama 20 detik.",
+
+    "Bicara seperti robot selama 30 detik.",
+
+    "Berjalan seperti model selama 15 detik.",
+
+    "Buat pantun spontan untuk pemain di sebelahmu.",
+
+    "Tertawa tanpa alasan selama 15 detik.",
+
+    "Lakukan pose superhero selama 20 detik.",
+
+    "Nyanyikan lagu anak-anak dengan serius.",
+
+    "Bicara menggunakan suara bayi selama 20 detik.",
+
+    "Lakukan 5 push-up.",
+
+    "Buat iklan produk random selama 30 detik.",
+
+    "Tirukan selebriti favoritmu selama 20 detik."
+
 ];
 
 
-let snake;
-let food;
-
-let direction;
-let nextDirection;
-
-let score;
-let level;
-
-let running = false;
-let paused = false;
-
-let gameTimer;
-
-let obstacles = [];
-
-
-/*
-    RESET GAME
-*/
-
-function resetGame() {
-
-    snake = [
-        { x: 13, y: 13 },
-        { x: 12, y: 13 },
-        { x: 11, y: 13 }
-    ];
-
-    direction = {
-        x: 1,
-        y: 0
-    };
-
-    nextDirection = {
-        x: 1,
-        y: 0
-    };
-
-    score = 0;
-    level = 1;
-
-    running = false;
-    paused = false;
-
-    obstacles = [];
-
-    food = createFood();
-
-    pauseButton.textContent = "⏸ Pause";
-
-    updateUI();
-
-    draw();
-
-    messageEl.textContent =
-        "Tekan Mulai untuk bermain";
-}
-
-
-/*
-    UPDATE INFORMASI
-*/
-
-function updateUI() {
-
-    levelEl.textContent = level;
-
-    scoreEl.textContent = score;
-
-    targetEl.textContent =
-        targets[level - 1];
-}
-
-
-/*
-    MEMBUAT MAKANAN
-*/
-
-function createFood() {
-
-    let position;
-
-    do {
-
-        position = {
-            x: Math.floor(Math.random() * N),
-            y: Math.floor(Math.random() * N)
-        };
-
-    } while (
-
-        snake.some(
-            part =>
-            part.x === position.x &&
-            part.y === position.y
-        )
-
-        ||
-
-        obstacles.some(
-            obstacle =>
-            obstacle.x === position.x &&
-            obstacle.y === position.y
-        )
-
-    );
-
-    return position;
-}
-
-
-/*
-    MEMBUAT RINTANGAN
-*/
-
-function createObstacles() {
-
-    obstacles = [];
-
-    /*
-        Level 1-3 tidak ada rintangan
-        Level 4 mulai ada rintangan
-    */
-
-    const amount =
-        Math.max(0, (level - 3) * 3);
-
-    let attempts = 0;
-
-    while (
-        obstacles.length < amount &&
-        attempts < 1000
-    ) {
-
-        attempts++;
-
-        const obstacle = {
-
-            x: Math.floor(Math.random() * N),
-
-            y: Math.floor(Math.random() * N)
-
-        };
-
-
-        /*
-            Jangan membuat rintangan
-            terlalu dekat dengan ular awal
-        */
-
-        if (
-            Math.abs(obstacle.x - 13) < 4 &&
-            Math.abs(obstacle.y - 13) < 4
-        ) {
-            continue;
-        }
-
-
-        /*
-            Jangan bertabrakan dengan ular
-        */
-
-        if (
-            snake.some(
-                part =>
-                part.x === obstacle.x &&
-                part.y === obstacle.y
-            )
-        ) {
-            continue;
-        }
-
-
-        /*
-            Jangan bertumpuk
-        */
-
-        if (
-            obstacles.some(
-                item =>
-                item.x === obstacle.x &&
-                item.y === obstacle.y
-            )
-        ) {
-            continue;
-        }
-
-
-        obstacles.push(obstacle);
-    }
-}
-
-
-/*
-    MULAI GAME
-*/
+/* =========================
+   MULAI GAME
+========================= */
 
 function startGame() {
 
-    if (running) {
-        return;
-    }
+    names[0] =
+        document.getElementById("player1").value.trim()
+        || "Player 1";
 
-    running = true;
-    paused = false;
+    names[1] =
+        document.getElementById("player2").value.trim()
+        || "Player 2";
 
-    messageEl.textContent =
-        "Arahkan ular dan makan makanan!";
+    names[2] =
+        document.getElementById("player3").value.trim()
+        || "Player 3";
 
-    scheduleNextMove();
-}
-
-
-/*
-    TIMER GAME
-*/
-
-function scheduleNextMove() {
-
-    clearTimeout(gameTimer);
-
-    if (
-        running &&
-        !paused
-    ) {
-
-        gameTimer = setTimeout(
-            gameLoop,
-            speeds[level - 1]
-        );
-
-    }
-}
+    names[3] =
+        document.getElementById("player4").value.trim()
+        || "Player 4";
 
 
-/*
-    GAME LOOP
-*/
+    scores = [0, 0, 0, 0];
 
-function gameLoop() {
-
-    const head = {
-
-        x: snake[0].x + nextDirection.x,
-
-        y: snake[0].y + nextDirection.y
-
-    };
+    currentPlayer = 0;
 
 
-    direction = nextDirection;
+    /* MASUK KE GAME */
+
+    document.getElementById("menu")
+        .classList.add("hidden");
+
+    document.getElementById("game")
+        .classList.remove("hidden");
 
 
-    /*
-        CEK TABRAK DINDING
-    */
+    /* NAMA PLAYER */
 
-    if (
-        head.x < 0 ||
-        head.x >= N ||
-        head.y < 0 ||
-        head.y >= N
-    ) {
+    for(let i = 0; i < 4; i++) {
 
-        gameOver();
+        document.getElementById("name" + i)
+            .innerText = names[i];
 
-        return;
-    }
-
-
-    /*
-        CEK TABRAK BADAN ULAR
-    */
-
-    if (
-        snake.some(
-            part =>
-            part.x === head.x &&
-            part.y === head.y
-        )
-    ) {
-
-        gameOver();
-
-        return;
-    }
-
-
-    /*
-        CEK TABRAK RINTANGAN
-    */
-
-    if (
-        obstacles.some(
-            obstacle =>
-            obstacle.x === head.x &&
-            obstacle.y === head.y
-        )
-    ) {
-
-        gameOver();
-
-        return;
-    }
-
-
-    /*
-        TAMBAHKAN KEPALA BARU
-    */
-
-    snake.unshift(head);
-
-
-    /*
-        MAKAN MAKANAN
-    */
-
-    if (
-        head.x === food.x &&
-        head.y === food.y
-    ) {
-
-        score++;
-
-
-        /*
-            CEK NAIK LEVEL
-        */
-
-        if (
-            score >=
-            targets[level - 1]
-        ) {
-
-            if (level < 10) {
-
-                level++;
-
-                createObstacles();
-
-                messageEl.textContent =
-                    "🎉 Hebat! Naik ke Level " +
-                    level + "!";
-
-            }
-
-            else {
-
-                score =
-                    targets[9];
-
-                winGame();
-
-                draw();
-
-                return;
-            }
-
-
-            /*
-                Buat makanan baru
-            */
-
-            food = createFood();
-
-        }
-        else {
-
-            food = createFood();
-
-        }
+        document.getElementById("score" + i)
+            .innerText = "0 Poin";
 
     }
 
-    else {
 
-        /*
-            Jika tidak makan,
-            ekor dihapus
-        */
-
-        snake.pop();
-
-    }
-
-
-    updateUI();
-
-    draw();
-
-    scheduleNextMove();
-}
-
-
-/*
-    GAME OVER
-*/
-
-function gameOver() {
-
-    running = false;
-
-    clearTimeout(gameTimer);
-
-    messageEl.textContent =
-        "💥 GAME OVER! Tekan Ulangi untuk mencoba lagi.";
-
-    draw(true);
-}
-
-
-/*
-    MENANG LEVEL 10
-*/
-
-function winGame() {
-
-    running = false;
-
-    clearTimeout(gameTimer);
-
-    messageEl.textContent =
-        "🏆 MASTER SNAKE! Kamu menamatkan Level 10!";
+    updateTurn();
 
 }
 
 
-/*
-    PAUSE
-*/
+/* =========================
+   UPDATE GILIRAN
+========================= */
 
-function togglePause() {
+function updateTurn() {
 
-    if (!running) {
-        return;
-    }
-
-    paused = !paused;
+    document.getElementById("turnName")
+        .innerText = names[currentPlayer];
 
 
-    if (paused) {
+    for(let i = 0; i < 4; i++) {
 
-        pauseButton.textContent =
-            "▶ Lanjut";
-
-        messageEl.textContent =
-            "⏸ Game dijeda";
+        document.getElementById("playerBox" + i)
+            .classList.remove("active");
 
     }
 
-    else {
 
-        pauseButton.textContent =
-            "⏸ Pause";
+    document.getElementById("playerBox" + currentPlayer)
+        .classList.add("active");
 
-        messageEl.textContent =
-            "Ayo lanjut!";
 
-        scheduleNextMove();
+    document.getElementById("card").innerHTML = `
+
+        <div class="card-title">
+            🎲 SIAP?
+        </div>
+
+        <div class="question">
+            ${names[currentPlayer]}, pilih
+            <b>Truth</b> atau <b>Dare</b>!
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   RANDOM
+========================= */
+
+function randomQuestion(array) {
+
+    return array[
+        Math.floor(Math.random() * array.length)
+    ];
+
+}
+
+
+/* =========================
+   TRUTH
+========================= */
+
+function truth() {
+
+    let question = randomQuestion(truths);
+
+
+    scores[currentPlayer] += 10;
+
+
+    document.getElementById("card").innerHTML = `
+
+        <div class="card-title">
+            💙 TRUTH
+        </div>
+
+        <div class="question">
+            ${question}
+        </div>
+
+        <div class="points">
+            +10 Poin
+        </div>
+
+    `;
+
+
+    updateScores();
+
+}
+
+
+/* =========================
+   DARE
+========================= */
+
+function dare() {
+
+    let question = randomQuestion(dares);
+
+
+    scores[currentPlayer] += 20;
+
+
+    document.getElementById("card").innerHTML = `
+
+        <div class="card-title">
+            ❤️ DARE
+        </div>
+
+        <div class="question">
+            ${question}
+        </div>
+
+        <div class="points">
+            +20 Poin
+        </div>
+
+    `;
+
+
+    updateScores();
+
+}
+
+
+/* =========================
+   UPDATE SCORE
+========================= */
+
+function updateScores() {
+
+    for(let i = 0; i < 4; i++) {
+
+        document.getElementById("score" + i)
+            .innerText = scores[i] + " Poin";
 
     }
 
 }
 
 
-/*
-    ARAH ULAR
-*/
+/* =========================
+   PLAYER BERIKUTNYA
+========================= */
 
-function setDirection(directionName) {
+function nextPlayer() {
 
-    const directions = {
-
-        up: {
-            x: 0,
-            y: -1
-        },
-
-        down: {
-            x: 0,
-            y: 1
-        },
-
-        left: {
-            x: -1,
-            y: 0
-        },
-
-        right: {
-            x: 1,
-            y: 0
-        }
-
-    };
+    currentPlayer++;
 
 
-    const newDirection =
-        directions[directionName];
+    if(currentPlayer >= 4) {
 
-
-    /*
-        Tidak boleh langsung
-        berbalik arah
-    */
-
-    if (
-        newDirection.x === -direction.x &&
-        newDirection.y === -direction.y
-    ) {
-
-        return;
+        currentPlayer = 0;
 
     }
 
 
-    nextDirection =
-        newDirection;
-}
-
-
-/*
-    KEYBOARD
-*/
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        const keyMap = {
-
-            ArrowUp: "up",
-            w: "up",
-            W: "up",
-
-            ArrowDown: "down",
-            s: "down",
-            S: "down",
-
-            ArrowLeft: "left",
-            a: "left",
-            A: "left",
-
-            ArrowRight: "right",
-            d: "right",
-            D: "right"
-
-        };
-
-
-        if (keyMap[event.key]) {
-
-            event.preventDefault();
-
-            setDirection(
-                keyMap[event.key]
-            );
-
-        }
-
-
-        /*
-            Tombol Space = Pause
-        */
-
-        if (event.key === " ") {
-
-            event.preventDefault();
-
-            togglePause();
-
-        }
-
-    }
-);
-
-
-/*
-    TOMBOL HP
-*/
-
-document
-    .querySelectorAll("[data-dir]")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            function() {
-
-                setDirection(
-                    button.dataset.dir
-                );
-
-            }
-        );
-
-    });
-
-
-/*
-    BUTTON GAME
-*/
-
-startButton.onclick =
-    startGame;
-
-pauseButton.onclick =
-    togglePause;
-
-restartButton.onclick =
-    function() {
-
-        resetGame();
-
-        startGame();
-
-    };
-
-
-/*
-    SWIPE DI HP
-*/
-
-let touchStart = null;
-
-
-canvas.addEventListener(
-    "touchstart",
-    function(event) {
-
-        const touch =
-            event.touches[0];
-
-        touchStart = {
-
-            x: touch.clientX,
-
-            y: touch.clientY
-
-        };
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-canvas.addEventListener(
-    "touchend",
-    function(event) {
-
-        if (!touchStart) {
-            return;
-        }
-
-
-        const touch =
-            event.changedTouches[0];
-
-
-        const dx =
-            touch.clientX -
-            touchStart.x;
-
-
-        const dy =
-            touch.clientY -
-            touchStart.y;
-
-
-        if (
-            Math.max(
-                Math.abs(dx),
-                Math.abs(dy)
-            ) > 25
-        ) {
-
-            if (
-                Math.abs(dx) >
-                Math.abs(dy)
-            ) {
-
-                setDirection(
-                    dx > 0
-                    ? "right"
-                    : "left"
-                );
-
-            }
-
-            else {
-
-                setDirection(
-                    dy > 0
-                    ? "down"
-                    : "up"
-                );
-
-            }
-
-        }
-
-
-        touchStart = null;
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-/*
-    GAMBAR GAME
-*/
-
-function draw(gameOver = false) {
-
-    /*
-        Background
-    */
-
-    ctx.fillStyle = "#07120a";
-
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    /*
-        GRID
-    */
-
-    ctx.strokeStyle = "#102316";
-
-    ctx.lineWidth = 1;
-
-
-    for (
-        let i = 0;
-        i <= N;
-        i++
-    ) {
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            i * cell,
-            0
-        );
-
-        ctx.lineTo(
-            i * cell,
-            canvas.height
-        );
-
-        ctx.stroke();
-
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            0,
-            i * cell
-        );
-
-        ctx.lineTo(
-            canvas.width,
-            i * cell
-        );
-
-        ctx.stroke();
-
-    }
-
-
-    /*
-        RINTANGAN
-    */
-
-    ctx.fillStyle = "#666";
-
-
-    obstacles.forEach(
-        obstacle => {
-
-            roundedRectangle(
-
-                obstacle.x * cell + 3,
-
-                obstacle.y * cell + 3,
-
-                cell - 6,
-
-                cell - 6,
-
-                5
-
-            );
-
-        }
-    );
-
-
-    /*
-        MAKANAN
-    */
-
-    ctx.fillStyle = "#e33";
-
-    ctx.beginPath();
-
-    ctx.arc(
-
-        food.x * cell + cell / 2,
-
-        food.y * cell + cell / 2,
-
-        cell * 0.34,
-
-        0,
-
-        Math.PI * 2
-
-    );
-
-    ctx.fill();
-
-
-    /*
-        ULAR
-    */
-
-    snake.forEach(
-        (part, index) => {
-
-            if (index === 0) {
-
-                ctx.fillStyle =
-                    "#7cff5b";
-
-            }
-
-            else {
-
-                ctx.fillStyle =
-                    "#27c943";
-
-            }
-
-
-            roundedRectangle(
-
-                part.x * cell + 2,
-
-                part.y * cell + 2,
-
-                cell - 4,
-
-                cell - 4,
-
-                5
-
-            );
-
-        }
-    );
-
-
-    /*
-        OVERLAY GAME OVER
-    */
-
-    if (gameOver) {
-
-        ctx.fillStyle =
-            "rgba(0,0,0,0.65)";
-
-        ctx.fillRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-
-        ctx.fillStyle =
-            "#fff";
-
-        ctx.textAlign =
-            "center";
-
-        ctx.font =
-            "bold 38px Arial";
-
-
-        ctx.fillText(
-            "GAME OVER",
-            canvas.width / 2,
-            canvas.height / 2
-        );
-
-    }
+    updateTurn();
 
 }
 
 
-/*
-    KOTAK ROUNDED
-*/
+/* =========================
+   KEMBALI MENU
+========================= */
 
-function roundedRectangle(
-    x,
-    y,
-    width,
-    height,
-    radius
-) {
+function backToMenu() {
 
-    ctx.beginPath();
+    document.getElementById("game")
+        .classList.add("hidden");
 
-    ctx.moveTo(
-        x + radius,
-        y
-    );
-
-    ctx.arcTo(
-        x + width,
-        y,
-        x + width,
-        y + height,
-        radius
-    );
-
-    ctx.arcTo(
-        x + width,
-        y + height,
-        x,
-        y + height,
-        radius
-    );
-
-    ctx.arcTo(
-        x,
-        y + height,
-        x,
-        y,
-        radius
-    );
-
-    ctx.arcTo(
-        x,
-        y,
-        x + width,
-        y,
-        radius
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
+    document.getElementById("menu")
+        .classList.remove("hidden");
 
 }
 
 
-/*
-    JALANKAN PERTAMA KALI
-*/
+/* =========================
+   ENTER KEY
+========================= */
 
-resetGame();
+document.addEventListener("keydown", function(event) {
+
+    if(event.key === "Enter") {
+
+        if(!document.getElementById("menu")
+            .classList.contains("hidden")) {
+
+            startGame();
+
+        }
+
+    }
+
+});
 
 </script>
 
 </body>
 </html>
+```
