@@ -3,358 +3,382 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Truth or Dare - Spin 4 Pemain</title>
+<title>Truth or Dare - Dims.am_</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #12002b, #4b0082, #1a0033);
-    color: white;
-    min-height: 100vh;
-}
-
-.container {
-    width: 100%;
-    max-width: 550px;
-    margin: auto;
-    padding: 20px;
-}
-
-.logo {
-    text-align: center;
-    font-size: 42px;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-.logo span {
-    color: #ffcc00;
-}
-
-.subtitle {
-    text-align: center;
-    color: #ddd;
-    margin-bottom: 20px;
-}
-
-.box {
-    background: rgba(255,255,255,0.10);
-    padding: 20px;
-    border-radius: 22px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    margin-bottom: 15px;
-}
-
-h2 {
-    text-align: center;
-    margin-top: 0;
-}
-
-input {
-    width: 100%;
-    padding: 15px;
-    margin: 7px 0;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-    padding: 16px;
-    margin-top: 12px;
-    border: none;
-    border-radius: 14px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:active {
-    transform: scale(0.97);
-}
-
-.start {
-    background: #00e676;
-    color: #003b1c;
-}
-
-.spin {
-    background: #ffcc00;
-    color: #332800;
-    font-size: 22px;
-}
-
-.truth {
-    background: #2196f3;
-    color: white;
-}
-
-.dare {
-    background: #ff1744;
-    color: white;
-}
-
-.next {
-    background: #00e676;
-    color: #003b1c;
-}
-
-.reset {
-    background: white;
-    color: #222;
-}
-
-.hidden {
-    display: none;
-}
-
-/* PLAYER */
-
-.players {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 15px 0;
-}
-
-.player {
-    background: rgba(255,255,255,0.12);
-    padding: 12px;
-    border-radius: 14px;
-    text-align: center;
-    transition: 0.3s;
-}
-
-.player.active {
-    border: 3px solid #00e676;
-    box-shadow: 0 0 20px #00e676;
-    transform: scale(1.04);
-}
-
-.player .emoji {
-    font-size: 30px;
-}
-
-.player .name {
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-.player .score {
-    color: #ffcc00;
-    margin-top: 5px;
-}
-
-/* SPIN WHEEL */
-
-.wheel-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin: 20px 0;
-}
-
-.wheel {
-    width: 290px;
-    height: 290px;
-    border-radius: 50%;
-    border: 8px solid white;
-    position: relative;
-    overflow: hidden;
+body{
+    font-family:Arial,Helvetica,sans-serif;
     background:
-        conic-gradient(
-            #2196f3 0deg 90deg,
-            #ff1744 90deg 180deg,
-            #00e676 180deg 270deg,
-            #ff9800 270deg 360deg
-        );
+        radial-gradient(circle at top,#292957,#0b0b18 65%);
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+.container{
+    width:min(900px,94%);
+    margin:auto;
+    padding:20px 0 40px;
+}
+
+h1{
+    text-align:center;
+    font-size:clamp(30px,7vw,58px);
+    margin:15px 0 5px;
+    font-weight:900;
+    text-shadow:0 0 20px #8b5cf6;
+}
+
+.subtitle{
+    text-align:center;
+    color:#bbb;
+    margin-bottom:10px;
+}
+
+.creator{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:15px;
+    color:#aaa;
+    letter-spacing:1px;
+}
+
+.creator span{
+    color:#d8b4fe;
+    font-weight:900;
+    text-shadow:0 0 12px #a855f7;
+}
+
+.card{
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+.menu{
+    max-width:550px;
+    margin:30px auto;
+}
+
+.menu h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin:7px 0;
+    border:none;
+    border-radius:12px;
+    background:#17172a;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus{
+    box-shadow:0 0 0 2px #8b5cf6;
+}
+
+button{
+    border:none;
+    border-radius:14px;
+    padding:15px 22px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    color:white;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.15);
+}
+
+button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.start-btn{
+    width:100%;
+    margin-top:15px;
+    background:linear-gradient(135deg,#8b5cf6,#ec4899);
+}
+
+.game{
+    display:none;
+}
+
+.status{
+    text-align:center;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:20px;
+    min-height:30px;
+}
+
+.wheel-area{
+    display:flex;
+    justify-content:center;
+    margin:15px auto 25px;
+}
+
+.wheel-container{
+    position:relative;
+    width:min(350px,80vw);
+    height:min(350px,80vw);
+}
+
+.wheel{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    border:8px solid white;
     box-shadow:
-        0 0 20px rgba(255,255,255,0.4),
-        0 10px 30px rgba(0,0,0,0.5);
-    transition: transform 4s cubic-bezier(0.15,0.75,0.15,1);
+        0 0 0 5px rgba(255,255,255,.1),
+        0 0 40px rgba(139,92,246,.5);
+    position:relative;
+    overflow:hidden;
+    transition:transform 4s cubic-bezier(.12,.7,.15,1);
 }
 
-.wheel-text {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+.player-wheel{
+    background:conic-gradient(
+        #2196f3 0deg 90deg,
+        #ff1744 90deg 180deg,
+        #00c853 180deg 270deg,
+        #ff9800 270deg 360deg
+    );
 }
 
-.wheel-name {
-    position: absolute;
-    font-size: 17px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px #000;
-    width: 120px;
-    text-align: center;
+.td-wheel{
+    background:conic-gradient(
+        #2196f3 0deg 180deg,
+        #ff1744 180deg 360deg
+    );
 }
 
-.name1 {
-    top: 48px;
-    left: 0px;
+.wheel-label{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform-origin:center;
+    font-size:20px;
+    font-weight:900;
+    text-shadow:2px 2px 4px #000;
+    white-space:nowrap;
 }
 
-.name2 {
-    top: 48px;
-    right: 0px;
+.player-wheel .label1{
+    transform:translate(-50%,-50%) rotate(45deg) translateY(-105px);
 }
 
-.name3 {
-    bottom: 48px;
-    right: 0px;
+.player-wheel .label2{
+    transform:translate(-50%,-50%) rotate(135deg) translateY(-105px);
 }
 
-.name4 {
-    bottom: 48px;
-    left: 0px;
+.player-wheel .label3{
+    transform:translate(-50%,-50%) rotate(225deg) translateY(-105px);
 }
 
-.pointer {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    width: 0;
-    height: 0;
-    border-left: 17px solid transparent;
-    border-right: 17px solid transparent;
-    border-top: 40px solid white;
-    filter: drop-shadow(0 3px 3px black);
+.player-wheel .label4{
+    transform:translate(-50%,-50%) rotate(315deg) translateY(-105px);
 }
 
-.wheel-center {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: white;
-    color: #4b0082;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 14px;
-    z-index: 5;
-    box-shadow: 0 0 10px black;
+.td-wheel .truth-label{
+    transform:translate(-50%,-50%) rotate(90deg) translateY(-105px);
 }
 
-/* RESULT */
-
-.result {
-    background: rgba(0,0,0,0.35);
-    border-radius: 18px;
-    padding: 20px;
-    text-align: center;
-    margin-top: 15px;
+.td-wheel .dare-label{
+    transform:translate(-50%,-50%) rotate(270deg) translateY(-105px);
 }
 
-.result-title {
-    font-size: 18px;
-    color: #ccc;
+.pointer{
+    position:absolute;
+    z-index:5;
+    top:-17px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0;
+    height:0;
+    border-left:18px solid transparent;
+    border-right:18px solid transparent;
+    border-top:42px solid white;
+    filter:drop-shadow(0 3px 4px #000);
 }
 
-.result-name {
-    font-size: 30px;
-    font-weight: bold;
-    color: #ffcc00;
-    margin-top: 8px;
+.center{
+    position:absolute;
+    z-index:4;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:72px;
+    height:72px;
+    background:#111;
+    border:5px solid white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:14px;
+    box-shadow:0 0 20px #000;
 }
 
-/* CARD */
-
-.card {
-    background: rgba(0,0,0,0.35);
-    border-radius: 18px;
-    padding: 25px 15px;
-    min-height: 170px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 15px;
+.spin-btn{
+    display:block;
+    margin:auto;
+    background:linear-gradient(135deg,#7c3aed,#db2777);
+    min-width:240px;
+    font-size:18px;
 }
 
-.card-title {
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 15px;
+.next-btn{
+    background:linear-gradient(135deg,#00b894,#00cec9);
+    width:100%;
+    margin-top:15px;
 }
 
-.question {
-    font-size: 20px;
-    line-height: 1.4;
+.reset-btn{
+    background:#444;
+    width:100%;
+    margin-top:10px;
 }
 
-.points {
-    color: #00e676;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 15px;
+.result{
+    text-align:center;
+    margin-top:20px;
+    display:none;
 }
 
-.choice {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+.selected-player{
+    font-size:30px;
+    font-weight:900;
+    margin-bottom:10px;
+    color:#facc15;
 }
 
-.choice button {
-    margin-top: 15px;
+.type{
+    display:inline-block;
+    padding:10px 22px;
+    border-radius:30px;
+    font-size:20px;
+    font-weight:900;
+    margin-bottom:15px;
 }
 
-.turn {
-    text-align: center;
-    font-size: 21px;
-    font-weight: bold;
-    margin: 15px 0;
+.truth{
+    background:#2196f3;
 }
 
-.footer {
-    text-align: center;
-    color: #aaa;
-    font-size: 13px;
-    margin-top: 20px;
+.dare{
+    background:#ff1744;
 }
 
-.spinning {
-    pointer-events: none;
-    opacity: 0.7;
+.challenge{
+    font-size:23px;
+    line-height:1.4;
+    padding:20px;
+    background:rgba(0,0,0,.3);
+    border-radius:18px;
+    margin-top:10px;
 }
 
-@media(max-width: 380px) {
+.points{
+    margin-top:15px;
+    color:#facc15;
+    font-weight:bold;
+}
 
-    .logo {
-        font-size: 35px;
+.scoreboard{
+    margin-top:25px;
+}
+
+.scoreboard h3{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.score{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,.06);
+    padding:12px 15px;
+    border-radius:12px;
+    margin:6px 0;
+}
+
+.score strong{
+    color:#facc15;
+}
+
+.hidden{
+    display:none!important;
+}
+
+@media(max-width:500px){
+
+    .card{
+        padding:18px;
     }
 
-    .wheel {
-        width: 250px;
-        height: 250px;
+    .wheel-container{
+        width:290px;
+        height:290px;
     }
 
-    .wheel-name {
-        font-size: 14px;
+    .wheel-label{
+        font-size:15px;
     }
 
-    .question {
-        font-size: 18px;
+    .player-wheel .label1,
+    .player-wheel .label2,
+    .player-wheel .label3,
+    .player-wheel .label4{
+        font-size:14px;
     }
 
-    .turn {
-        font-size: 18px;
+    .player-wheel .label1{
+        transform:translate(-50%,-50%) rotate(45deg) translateY(-85px);
+    }
+
+    .player-wheel .label2{
+        transform:translate(-50%,-50%) rotate(135deg) translateY(-85px);
+    }
+
+    .player-wheel .label3{
+        transform:translate(-50%,-50%) rotate(225deg) translateY(-85px);
+    }
+
+    .player-wheel .label4{
+        transform:translate(-50%,-50%) rotate(315deg) translateY(-85px);
+    }
+
+    .td-wheel .truth-label{
+        transform:translate(-50%,-50%) rotate(90deg) translateY(-85px);
+    }
+
+    .td-wheel .dare-label{
+        transform:translate(-50%,-50%) rotate(270deg) translateY(-85px);
+    }
+
+    .challenge{
+        font-size:19px;
     }
 }
 </style>
@@ -364,196 +388,158 @@ button:active {
 
 <div class="container">
 
-<!-- =========================
-     MENU
-========================= -->
+<h1>🔥 TRUTH OR DARE 🔥</h1>
 
-<div id="menu">
+<div class="subtitle">
+    Spin Battle — 4 Pemain
+</div>
 
-    <div class="logo">
-        TRUTH <span>OR</span> DARE
-    </div>
+<div class="creator">
+    ✨ Create by <span>Dims.am_</span>
+</div>
 
-    <div class="subtitle">
-        🎡 Spin • Truth • Dare • 4 Pemain
-    </div>
+<!-- MENU -->
+<div class="card menu" id="menu">
 
-    <div class="box">
+    <h2>👥 Masukkan Nama Pemain</h2>
 
-        <h2>👥 Masukkan Nama Pemain</h2>
+    <input id="p1" placeholder="Pemain 1">
+    <input id="p2" placeholder="Pemain 2">
+    <input id="p3" placeholder="Pemain 3">
+    <input id="p4" placeholder="Pemain 4">
 
-        <input id="player1" type="text" placeholder="👤 Pemain 1">
-
-        <input id="player2" type="text" placeholder="👤 Pemain 2">
-
-        <input id="player3" type="text" placeholder="👤 Pemain 3">
-
-        <input id="player4" type="text" placeholder="👤 Pemain 4">
-
-        <button class="start" onclick="startGame()">
-            🚀 MULAI GAME
-        </button>
-
-    </div>
-
-    <div class="footer">
-        Truth or Dare • Multiplayer 4 Pemain
-    </div>
+    <button class="start-btn" onclick="startGame()">
+        🚀 MULAI GAME
+    </button>
 
 </div>
 
+<!-- GAME -->
+<div class="game" id="game">
 
-<!-- =========================
-     GAME
-========================= -->
+    <div class="card">
 
-<div id="game" class="hidden">
-
-    <div class="logo">
-        🎡 TOD
-    </div>
-
-    <div class="subtitle">
-        Putar untuk menentukan pemain!
-    </div>
-
-
-    <!-- PLAYER -->
-
-    <div class="players">
-
-        <div id="playerBox0" class="player">
-            <div class="emoji">😎</div>
-            <div id="name0" class="name">Player 1</div>
-            <div id="score0" class="score">0 Poin</div>
+        <div class="status" id="status">
+            🎡 Siap menentukan pemain...
         </div>
 
-        <div id="playerBox1" class="player">
-            <div class="emoji">😈</div>
-            <div id="name1" class="name">Player 2</div>
-            <div id="score1" class="score">0 Poin</div>
-        </div>
+        <!-- PLAYER WHEEL -->
+        <div class="wheel-area" id="playerArea">
 
-        <div id="playerBox2" class="player">
-            <div class="emoji">🤪</div>
-            <div id="name2" class="name">Player 3</div>
-            <div id="score2" class="score">0 Poin</div>
-        </div>
+            <div class="wheel-container">
 
-        <div id="playerBox3" class="player">
-            <div class="emoji">🤠</div>
-            <div id="name3" class="name">Player 4</div>
-            <div id="score3" class="score">0 Poin</div>
-        </div>
+                <div class="pointer"></div>
 
-    </div>
+                <div class="wheel player-wheel" id="playerWheel">
 
-
-    <!-- WHEEL -->
-
-    <div class="box">
-
-        <h2>🎡 PUTAR RODA</h2>
-
-        <div class="wheel-container">
-
-            <div class="pointer"></div>
-
-            <div id="wheel" class="wheel">
-
-                <div class="wheel-text">
-
-                    <div id="wheelName0" class="wheel-name name1">
-                        Player 1
+                    <div class="wheel-label label1" id="label1">
+                        Pemain 1
                     </div>
 
-                    <div id="wheelName1" class="wheel-name name2">
-                        Player 2
+                    <div class="wheel-label label2" id="label2">
+                        Pemain 2
                     </div>
 
-                    <div id="wheelName2" class="wheel-name name3">
-                        Player 3
+                    <div class="wheel-label label3" id="label3">
+                        Pemain 3
                     </div>
 
-                    <div id="wheelName3" class="wheel-name name4">
-                        Player 4
+                    <div class="wheel-label label4" id="label4">
+                        Pemain 4
                     </div>
 
-                </div>
+                    <div class="center">
+                        SPIN
+                    </div>
 
-                <div class="wheel-center">
-                    SPIN
                 </div>
 
             </div>
 
         </div>
 
-        <button id="spinButton" class="spin" onclick="spinWheel()">
-            🎡 SPIN!
+        <!-- TRUTH DARE WHEEL -->
+        <div class="wheel-area hidden" id="tdArea">
+
+            <div class="wheel-container">
+
+                <div class="pointer"></div>
+
+                <div class="wheel td-wheel" id="tdWheel">
+
+                    <div class="wheel-label truth-label">
+                        TRUTH
+                    </div>
+
+                    <div class="wheel-label dare-label">
+                        DARE
+                    </div>
+
+                    <div class="center">
+                        T / D
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            class="spin-btn"
+            id="spinBtn"
+            onclick="spinPlayer()">
+            🎡 SPIN PEMAIN
         </button>
 
-        <div id="spinResult" class="result hidden">
+        <!-- RESULT -->
+        <div class="result" id="result">
 
-            <div class="result-title">
-                🎯 Yang Terpilih Adalah
-            </div>
+            <div class="selected-player" id="selectedPlayer"></div>
 
-            <div id="resultName" class="result-name">
-                -
-            </div>
+            <div class="type" id="type"></div>
 
-        </div>
+            <div class="challenge" id="challenge"></div>
 
-    </div>
+            <div class="points" id="points"></div>
 
-
-    <!-- TURN -->
-
-    <div id="turnBox" class="turn hidden">
-        🎯 Giliran:
-        <span id="turnName">-</span>
-    </div>
-
-
-    <!-- TRUTH / DARE -->
-
-    <div id="choiceBox" class="box hidden">
-
-        <h2>🔥 Pilih Tantangan</h2>
-
-        <div class="choice">
-
-            <button class="truth" onclick="truth()">
-                💙 TRUTH
-            </button>
-
-            <button class="dare" onclick="dare()">
-                ❤️ DARE
+            <button
+                class="next-btn"
+                onclick="nextRound()">
+                🎡 SPIN PEMAIN BERIKUTNYA
             </button>
 
         </div>
 
+        <!-- SCORE -->
+        <div class="scoreboard">
 
-        <div id="card" class="card">
+            <h3>🏆 SCORE</h3>
 
-            <div class="card-title">
-                🎲 SIAP?
+            <div class="score">
+                <span id="name0">Pemain 1</span>
+                <strong id="score0">0</strong>
             </div>
 
-            <div class="question">
-                Pilih Truth atau Dare!
+            <div class="score">
+                <span id="name1">Pemain 2</span>
+                <strong id="score1">0</strong>
+            </div>
+
+            <div class="score">
+                <span id="name2">Pemain 3</span>
+                <strong id="score2">0</strong>
+            </div>
+
+            <div class="score">
+                <span id="name3">Pemain 4</span>
+                <strong id="score3">0</strong>
             </div>
 
         </div>
 
-
-        <button class="next" onclick="spinAgain()">
-            🎡 SPIN PEMAIN BERIKUTNYA
-        </button>
-
-        <button class="reset" onclick="backToMenu()">
-            🏠 KEMBALI KE MENU
+        <button class="reset-btn" onclick="location.reload()">
+            🔄 KEMBALI KE MENU
         </button>
 
     </div>
@@ -561,508 +547,352 @@ button:active {
 </div>
 
 </div>
-
 
 <script>
 
-/* =========================
-   DATA GAME
-========================= */
-
 let names = [];
-
-let scores = [0, 0, 0, 0];
+let scores = [0,0,0,0];
 
 let currentPlayer = -1;
 
-let rotation = 0;
+let playerRotation = 0;
+let tdRotation = 0;
 
 let spinning = false;
 
-
-/* =========================
-   TRUTH
-========================= */
-
 const truths = [
 
-    "Siapa orang terakhir yang kamu chat hari ini?",
+"Siapa orang terakhir yang kamu stalk di media sosial?",
 
-    "Apa hal paling memalukan yang pernah kamu lakukan?",
+"Apa kebohongan terbesar yang pernah kamu lakukan?",
 
-    "Siapa orang yang paling sering kamu pikirkan?",
+"Siapa orang yang paling kamu rindukan saat ini?",
 
-    "Apa kebiasaan aneh yang kamu punya?",
+"Kalau bisa mengulang satu kejadian, kejadian apa?",
 
-    "Apa ketakutan terbesar kamu?",
+"Apa hal paling memalukan yang pernah kamu lakukan?",
 
-    "Pernahkah kamu berbohong kepada temanmu?",
+"Siapa orang yang paling kamu percaya?",
 
-    "Apa makanan yang paling tidak kamu suka?",
+"Pernahkah kamu pura-pura tidak melihat pesan seseorang?",
 
-    "Siapa pemain di sini yang paling kamu percaya?",
+"Apa rahasia yang belum pernah kamu ceritakan kepada teman?",
 
-    "Siapa pemain di sini yang paling lucu?",
+"Siapa orang yang menurutmu paling menarik di sini?",
 
-    "Apa impian terbesar kamu?",
+"Apa kebiasaan aneh yang kamu punya?",
 
-    "Kalau punya Rp100 juta, apa yang akan kamu beli?",
+"Kalau mendapat Rp1 miliar, apa yang pertama kamu beli?",
 
-    "Apa hal yang paling kamu sesali?",
+"Siapa mantan yang paling sulit kamu lupakan?",
 
-    "Pernahkah kamu menyukai seseorang secara diam-diam?",
+"Pernahkah kamu berbohong kepada pasangan?",
 
-    "Apa hal pertama yang kamu lakukan setelah bangun tidur?",
+"Apa ketakutan terbesar kamu?",
 
-    "Apa rahasia kecil yang boleh kamu ceritakan sekarang?",
+"Siapa orang yang paling sering membuatmu kesal?",
 
-    "Siapa orang yang paling ingin kamu ajak liburan?",
+"Apa hal yang paling kamu sesali?",
 
-    "Apa kebiasaan buruk yang ingin kamu hilangkan?",
+"Pernahkah kamu jatuh cinta pada orang yang salah?",
 
-    "Pernahkah kamu pura-pura tidak melihat pesan seseorang?",
+"Apa impian terbesar yang belum tercapai?",
 
-    "Apa hal yang membuat kamu mudah malu?",
+"Siapa orang yang paling ingin kamu ajak liburan?",
 
-    "Apa pengalaman paling lucu dalam hidupmu?"
+"Kalau hidupmu jadi film, apa judulnya?"
 
 ];
-
-
-/* =========================
-   DARE
-========================= */
 
 const dares = [
 
-    "Joget selama 20 detik tanpa musik.",
+"Joget bebas selama 20 detik tanpa musik.",
 
-    "Tirukan suara ayam selama 15 detik.",
+"Nyanyikan lagu favoritmu dengan suara paling lucu.",
 
-    "Nyanyikan lagu favoritmu dengan gaya opera.",
+"Telepon teman dan bilang: Aku baru jadi artis!",
 
-    "Buat ekspresi wajah paling aneh selama 10 detik.",
+"Lakukan 15 squat.",
 
-    "Lakukan 10 kali squat.",
+"Berbicara dengan suara bayi selama 1 menit.",
 
-    "Tirukan gaya pemain lain selama 20 detik.",
+"Pose seperti model selama 20 detik.",
 
-    "Bicara seperti robot selama 30 detik.",
+"Tirukan gaya orang di sebelahmu.",
 
-    "Berjalan seperti model selama 15 detik.",
+"Buat suara ayam selama 15 detik.",
 
-    "Buat pantun spontan untuk pemain di sebelahmu.",
+"Lakukan push-up sebanyak 10 kali.",
 
-    "Tertawa tanpa alasan selama 15 detik.",
+"Berjalan seperti robot selama 30 detik.",
 
-    "Lakukan pose superhero selama 20 detik.",
+"Nyanyikan lagu nasional dengan gaya rock.",
 
-    "Nyanyikan lagu anak-anak dengan serius.",
+"Biarkan pemain lain membuat gaya rambutmu.",
 
-    "Bicara menggunakan suara bayi selama 20 detik.",
+"Baca pesan terakhir di WhatsApp dengan suara keras.",
 
-    "Lakukan 5 push-up.",
+"Lakukan dance TikTok selama 20 detik.",
 
-    "Buat iklan produk random selama 30 detik.",
+"Buat pantun spontan untuk pemain lain.",
 
-    "Tirukan selebriti favoritmu selama 20 detik.",
+"Berpura-pura menjadi presenter berita selama 30 detik.",
 
-    "Buat gaya foto paling keren selama 10 detik.",
+"Lakukan ekspresi marah, sedih, lalu bahagia.",
 
-    "Sebutkan 5 nama hewan dalam 5 detik.",
+"Berdiri dengan satu kaki selama 30 detik.",
 
-    "Bicara dengan aksen lucu selama 20 detik.",
+"Ucapkan alfabet dengan sangat cepat.",
 
-    "Lakukan gaya berjalan seperti robot."
+"Berikan pujian kepada setiap pemain."
 
 ];
 
+function startGame(){
 
-/* =========================
-   MULAI GAME
-========================= */
+    names = [
 
-function startGame() {
+        document.getElementById("p1").value.trim() || "Pemain 1",
 
-    names[0] =
-        document.getElementById("player1").value.trim()
-        || "Player 1";
+        document.getElementById("p2").value.trim() || "Pemain 2",
 
-    names[1] =
-        document.getElementById("player2").value.trim()
-        || "Player 2";
+        document.getElementById("p3").value.trim() || "Pemain 3",
 
-    names[2] =
-        document.getElementById("player3").value.trim()
-        || "Player 3";
+        document.getElementById("p4").value.trim() || "Pemain 4"
 
-    names[3] =
-        document.getElementById("player4").value.trim()
-        || "Player 4";
+    ];
 
-
-    scores = [0, 0, 0, 0];
+    scores = [0,0,0,0];
 
     currentPlayer = -1;
 
-    rotation = 0;
+    playerRotation = 0;
+    tdRotation = 0;
 
-    document.getElementById("wheel").style.transform =
+    document.getElementById("playerWheel").style.transform =
         "rotate(0deg)";
 
+    document.getElementById("tdWheel").style.transform =
+        "rotate(0deg)";
 
-    document.getElementById("menu")
-        .classList.add("hidden");
+    for(let i=0;i<4;i++){
 
-    document.getElementById("game")
-        .classList.remove("hidden");
+        document.getElementById("label"+(i+1)).textContent =
+            names[i];
 
+        document.getElementById("name"+i).textContent =
+            names[i];
 
-    for(let i = 0; i < 4; i++) {
-
-        document.getElementById("name" + i)
-            .innerText = names[i];
-
-        document.getElementById("score" + i)
-            .innerText = "0 Poin";
-
-        document.getElementById("wheelName" + i)
-            .innerText = names[i];
-
+        document.getElementById("score"+i).textContent =
+            "0";
     }
 
+    document.getElementById("menu").style.display="none";
 
-    document.getElementById("spinResult")
-        .classList.add("hidden");
+    document.getElementById("game").style.display="block";
 
-    document.getElementById("turnBox")
-        .classList.add("hidden");
+    document.getElementById("result").style.display="none";
 
-    document.getElementById("choiceBox")
-        .classList.add("hidden");
+    document.getElementById("tdArea").classList.add("hidden");
+
+    document.getElementById("playerArea").classList.remove("hidden");
+
+    document.getElementById("spinBtn").disabled=false;
+
+    document.getElementById("status").textContent =
+        "🎡 Siapa yang main duluan?";
 
 }
 
-
-/* =========================
-   SPIN WHEEL
-========================= */
-
-function spinWheel() {
+function spinPlayer(){
 
     if(spinning) return;
 
     spinning = true;
 
-    const button =
-        document.getElementById("spinButton");
+    document.getElementById("spinBtn").disabled=true;
 
-    button.classList.add("spinning");
+    document.getElementById("result").style.display="none";
 
-    button.innerText = "🎡 BERPUTAR...";
+    document.getElementById("tdArea").classList.add("hidden");
 
+    document.getElementById("playerArea").classList.remove("hidden");
 
-    /*
-       PILIH PEMAIN RANDOM
-    */
+    document.getElementById("status").textContent =
+        "🎡 MENENTUKAN PEMAIN...";
 
-    const selected =
-        Math.floor(Math.random() * 4);
-
-
-    currentPlayer = selected;
-
-
-    /*
-       Setiap pemain punya area 90 derajat.
-
-       Pointer berada di atas.
-
-       Kita putar roda beberapa putaran
-       lalu berhenti di pemain random.
-    */
+    currentPlayer =
+        Math.floor(Math.random()*4);
 
     const segmentCenter =
-        selected * 90 + 45;
+        currentPlayer * 90 + 45;
 
+    const extraSpins = 6;
 
-    const extraSpins =
-        5 + Math.floor(Math.random() * 3);
-
-
-    rotation +=
+    playerRotation +=
         extraSpins * 360 +
         (360 - segmentCenter);
 
+    document.getElementById("playerWheel").style.transform =
+        `rotate(${playerRotation}deg)`;
 
-    document.getElementById("wheel").style.transform =
-        "rotate(" + rotation + "deg)";
+    setTimeout(()=>{
 
+        document.getElementById("status").textContent =
+            "🔥 " + names[currentPlayer] +
+            " TERPILIH!";
 
-    setTimeout(function() {
+        document.getElementById("selectedPlayer").textContent =
+            "🎯 " + names[currentPlayer];
 
-        spinning = false;
+        setTimeout(()=>{
 
-        button.classList.remove("spinning");
+            spinTruthDare();
 
-        button.innerText = "🎡 SPIN LAGI";
+        },1000);
 
-
-        showSelectedPlayer();
-
-    }, 4200);
+    },4200);
 
 }
 
+function spinTruthDare(){
 
-/* =========================
-   PEMAIN TERPILIH
-========================= */
+    document.getElementById("status").textContent =
+        "🎡 MENENTUKAN TRUTH ATAU DARE...";
 
-function showSelectedPlayer() {
+    document.getElementById("playerArea")
+        .classList.add("hidden");
 
-    document.getElementById("resultName")
-        .innerText = names[currentPlayer];
-
-
-    document.getElementById("spinResult")
+    document.getElementById("tdArea")
         .classList.remove("hidden");
 
+    const choice =
+        Math.floor(Math.random()*2);
 
-    document.getElementById("turnName")
-        .innerText = names[currentPlayer];
+    const segmentCenter =
+        choice === 0 ? 90 : 270;
 
+    const extraSpins = 5;
 
-    document.getElementById("turnBox")
-        .classList.remove("hidden");
+    tdRotation +=
+        extraSpins * 360 +
+        (360 - segmentCenter);
 
+    document.getElementById("tdWheel").style.transform =
+        `rotate(${tdRotation}deg)`;
 
-    document.getElementById("choiceBox")
-        .classList.remove("hidden");
+    setTimeout(()=>{
 
+        showChallenge(choice);
 
-    for(let i = 0; i < 4; i++) {
+    },4200);
 
-        document.getElementById("playerBox" + i)
-            .classList.remove("active");
+}
+
+function showChallenge(choice){
+
+    spinning = false;
+
+    const type =
+        document.getElementById("type");
+
+    const challenge =
+        document.getElementById("challenge");
+
+    const points =
+        document.getElementById("points");
+
+    document.getElementById("result")
+        .style.display="block";
+
+    document.getElementById("selectedPlayer")
+        .textContent =
+        "🎯 " + names[currentPlayer];
+
+    if(choice === 0){
+
+        type.textContent = "💙 TRUTH";
+
+        type.className = "type truth";
+
+        const question =
+            truths[
+                Math.floor(Math.random()*truths.length)
+            ];
+
+        challenge.textContent =
+            "❓ " + question;
+
+        scores[currentPlayer] += 10;
+
+        points.textContent =
+            "⭐ Berhasil menjawab = +10 Poin";
+
+        document.getElementById("status").textContent =
+            "💙 WAKTUNYA TRUTH!";
+
+    }else{
+
+        type.textContent = "❤️ DARE";
+
+        type.className = "type dare";
+
+        const dare =
+            dares[
+                Math.floor(Math.random()*dares.length)
+            ];
+
+        challenge.textContent =
+            "🔥 " + dare;
+
+        scores[currentPlayer] += 20;
+
+        points.textContent =
+            "⭐ Berhasil melakukan = +20 Poin";
+
+        document.getElementById("status").textContent =
+            "❤️ WAKTUNYA DARE!";
 
     }
-
-
-    document.getElementById(
-        "playerBox" + currentPlayer
-    ).classList.add("active");
-
-
-    document.getElementById("card").innerHTML = `
-
-        <div class="card-title">
-            🎯 ${names[currentPlayer]}
-        </div>
-
-        <div class="question">
-            Sekarang giliran kamu!<br>
-            Pilih <b>Truth</b> atau <b>Dare</b>.
-        </div>
-
-    `;
-
-}
-
-
-/* =========================
-   RANDOM
-========================= */
-
-function randomQuestion(array) {
-
-    return array[
-        Math.floor(Math.random() * array.length)
-    ];
-
-}
-
-
-/* =========================
-   TRUTH
-========================= */
-
-function truth() {
-
-    if(currentPlayer < 0) return;
-
-
-    let question =
-        randomQuestion(truths);
-
-
-    scores[currentPlayer] += 10;
-
-
-    document.getElementById("card").innerHTML = `
-
-        <div class="card-title">
-            💙 TRUTH
-        </div>
-
-        <div class="question">
-            ${question}
-        </div>
-
-        <div class="points">
-            +10 Poin
-        </div>
-
-    `;
-
 
     updateScores();
 
 }
 
+function updateScores(){
 
-/* =========================
-   DARE
-========================= */
+    for(let i=0;i<4;i++){
 
-function dare() {
-
-    if(currentPlayer < 0) return;
-
-
-    let question =
-        randomQuestion(dares);
-
-
-    scores[currentPlayer] += 20;
-
-
-    document.getElementById("card").innerHTML = `
-
-        <div class="card-title">
-            ❤️ DARE
-        </div>
-
-        <div class="question">
-            ${question}
-        </div>
-
-        <div class="points">
-            +20 Poin
-        </div>
-
-    `;
-
-
-    updateScores();
-
-}
-
-
-/* =========================
-   SCORE
-========================= */
-
-function updateScores() {
-
-    for(let i = 0; i < 4; i++) {
-
-        document.getElementById("score" + i)
-            .innerText =
-            scores[i] + " Poin";
+        document.getElementById("score"+i)
+            .textContent = scores[i];
 
     }
 
 }
 
-
-/* =========================
-   SPIN LAGI
-========================= */
-
-function spinAgain() {
-
-    document.getElementById("spinResult")
-        .classList.add("hidden");
-
-    document.getElementById("turnBox")
-        .classList.add("hidden");
-
-    document.getElementById("choiceBox")
-        .classList.add("hidden");
-
-
-    document.getElementById("card").innerHTML = `
-
-        <div class="card-title">
-            🎡 SPIN LAGI
-        </div>
-
-        <div class="question">
-            Putar roda untuk menentukan
-            pemain berikutnya!
-        </div>
-
-    `;
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-
-    setTimeout(function() {
-
-        spinWheel();
-
-    }, 300);
-
-}
-
-
-/* =========================
-   MENU
-========================= */
-
-function backToMenu() {
+function nextRound(){
 
     if(spinning) return;
 
+    document.getElementById("result")
+        .style.display="none";
 
-    document.getElementById("game")
+    document.getElementById("tdArea")
         .classList.add("hidden");
 
-    document.getElementById("menu")
+    document.getElementById("playerArea")
         .classList.remove("hidden");
 
+    document.getElementById("status").textContent =
+        "🎡 Menentukan pemain berikutnya...";
 
-    currentPlayer = -1;
+    setTimeout(()=>{
+
+        spinPlayer();
+
+    },400);
 
 }
-
-
-/* =========================
-   ENTER
-========================= */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if(event.key === "Enter") {
-
-            if(!document.getElementById("menu")
-                .classList.contains("hidden")) {
-
-                startGame();
-
-            }
-
-        }
-
-    }
-);
 
 </script>
 
