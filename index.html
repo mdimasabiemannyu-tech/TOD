@@ -343,4 +343,1002 @@ button:disabled{
 }
 
 .truth{
-    background
+    background:#2196f3;
+}
+
+.dare{
+    background:#ff1744;
+}
+
+.challenge{
+    font-size:23px;
+    line-height:1.4;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.3);
+
+    border-radius:18px;
+
+    margin-top:10px;
+}
+
+.voice-buttons{
+    display:flex;
+    gap:10px;
+
+    margin-top:15px;
+}
+
+.voice-btn{
+    flex:1;
+    background:#6d28d9;
+}
+
+.stop-btn{
+    flex:1;
+    background:#555;
+}
+
+/* ================= INFO ================= */
+
+.info{
+    text-align:center;
+
+    color:#aaa;
+
+    font-size:14px;
+
+    margin-top:15px;
+
+    line-height:1.5;
+}
+
+/* ================= HIDDEN ================= */
+
+.hidden{
+    display:none!important;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:500px){
+
+    .card{
+        padding:18px;
+    }
+
+    .wheel-container{
+        width:290px;
+        height:290px;
+    }
+
+    .wheel-label{
+        font-size:15px;
+    }
+
+    .player-wheel .label1,
+    .player-wheel .label2,
+    .player-wheel .label3,
+    .player-wheel .label4{
+        font-size:14px;
+    }
+
+    .player-wheel .label1{
+        transform:
+            translate(-50%,-50%)
+            rotate(45deg)
+            translateY(-85px);
+    }
+
+    .player-wheel .label2{
+        transform:
+            translate(-50%,-50%)
+            rotate(135deg)
+            translateY(-85px);
+    }
+
+    .player-wheel .label3{
+        transform:
+            translate(-50%,-50%)
+            rotate(225deg)
+            translateY(-85px);
+    }
+
+    .player-wheel .label4{
+        transform:
+            translate(-50%,-50%)
+            rotate(315deg)
+            translateY(-85px);
+    }
+
+    .challenge{
+        font-size:19px;
+    }
+
+    .selected-player{
+        font-size:25px;
+    }
+
+    .td-buttons{
+        flex-direction:column;
+    }
+
+    .truth-btn,
+    .dare-btn{
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔥 TRUTH OR DARE 🔥</h1>
+
+<div class="subtitle">
+    Nongkrong Edition — Seru-seruan Bareng
+</div>
+
+<div class="creator">
+    ✨ Create by <span>Dims.am_</span>
+</div>
+
+
+<!-- ================= MENU ================= -->
+
+<div class="card menu" id="menu">
+
+    <h2>👥 Masukkan Nama Pemain</h2>
+
+    <input
+        id="p1"
+        placeholder="Pemain 1">
+
+    <input
+        id="p2"
+        placeholder="Pemain 2">
+
+    <input
+        id="p3"
+        placeholder="Pemain 3">
+
+    <input
+        id="p4"
+        placeholder="Pemain 4">
+
+    <button
+        class="start-btn"
+        onclick="startGame()">
+
+        🚀 MULAI NONGKRONG
+
+    </button>
+
+    <div class="info">
+        🎉 Tidak ada menang atau kalah.<br>
+        Cuma buat seru-seruan bareng teman!
+    </div>
+
+</div>
+
+
+<!-- ================= GAME ================= -->
+
+<div
+    class="game"
+    id="game">
+
+    <div class="card">
+
+        <div
+            class="status"
+            id="status">
+
+            🎡 Siap menentukan pemain...
+
+        </div>
+
+
+        <!-- PLAYER WHEEL -->
+
+        <div
+            class="wheel-area"
+            id="playerArea">
+
+            <div class="wheel-container">
+
+                <div class="pointer"></div>
+
+                <div
+                    class="wheel player-wheel"
+                    id="playerWheel">
+
+                    <div
+                        class="wheel-label label1"
+                        id="label1">
+
+                        Pemain 1
+
+                    </div>
+
+                    <div
+                        class="wheel-label label2"
+                        id="label2">
+
+                        Pemain 2
+
+                    </div>
+
+                    <div
+                        class="wheel-label label3"
+                        id="label3">
+
+                        Pemain 3
+
+                    </div>
+
+                    <div
+                        class="wheel-label label4"
+                        id="label4">
+
+                        Pemain 4
+
+                    </div>
+
+                    <div class="center">
+                        SPIN
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SPIN PLAYER -->
+
+        <button
+            class="spin-btn"
+            id="spinBtn"
+            onclick="spinPlayer()">
+
+            🎡 SPIN PEMAIN
+
+        </button>
+
+
+        <!-- ================= TRUTH DARE ================= -->
+
+        <div
+            id="choiceArea"
+            class="hidden">
+
+            <div class="status">
+                🤔 Pilih tantangannya!
+            </div>
+
+            <div class="td-buttons">
+
+                <button
+                    class="truth-btn"
+                    onclick="chooseTruth()">
+
+                    💙 TRUTH
+
+                </button>
+
+                <button
+                    class="dare-btn"
+                    onclick="chooseDare()">
+
+                    ❤️ DARE
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RESULT ================= -->
+
+        <div
+            class="result"
+            id="result">
+
+            <div
+                class="selected-player"
+                id="selectedPlayer">
+            </div>
+
+            <div
+                class="type"
+                id="type">
+            </div>
+
+            <div
+                class="challenge"
+                id="challenge">
+            </div>
+
+
+            <!-- VOICE -->
+
+            <div class="voice-buttons">
+
+                <button
+                    class="voice-btn"
+                    onclick="speakChallenge()">
+
+                    🔊 BACA LAGI
+
+                </button>
+
+                <button
+                    class="stop-btn"
+                    onclick="stopVoice()">
+
+                    🔇 STOP SUARA
+
+                </button>
+
+            </div>
+
+
+            <!-- NEXT -->
+
+            <button
+                class="next-btn"
+                onclick="nextRound()">
+
+                🎡 SPIN PEMAIN BERIKUTNYA
+
+            </button>
+
+        </div>
+
+
+        <!-- RESET -->
+
+        <button
+            class="reset-btn"
+            onclick="resetGame()">
+
+            🔄 KEMBALI KE MENU
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   DATA GAME
+========================================= */
+
+let names = [];
+
+let currentPlayer = -1;
+
+let playerRotation = 0;
+
+let spinning = false;
+
+let currentText = "";
+
+
+/* =========================================
+   TRUTH
+========================================= */
+
+const truths = [
+
+"Siapa orang terakhir yang kamu stalk di media sosial?",
+
+"Apa kebohongan terbesar yang pernah kamu lakukan?",
+
+"Siapa orang yang paling kamu rindukan saat ini?",
+
+"Kalau bisa mengulang satu kejadian, kejadian apa?",
+
+"Apa hal paling memalukan yang pernah kamu lakukan?",
+
+"Siapa orang yang paling kamu percaya?",
+
+"Pernahkah kamu pura-pura tidak melihat pesan seseorang?",
+
+"Apa rahasia kecil yang belum pernah kamu ceritakan kepada teman?",
+
+"Siapa orang yang menurutmu paling menarik di sini?",
+
+"Apa kebiasaan aneh yang kamu punya?",
+
+"Kalau mendapat satu miliar rupiah, apa yang pertama kamu beli?",
+
+"Siapa orang yang paling sering membuatmu kesal?",
+
+"Apa hal yang paling kamu sesali?",
+
+"Pernahkah kamu jatuh cinta pada orang yang salah?",
+
+"Apa impian terbesar yang belum tercapai?",
+
+"Siapa orang yang paling ingin kamu ajak liburan?",
+
+"Kalau hidupmu jadi film, apa judulnya?",
+
+"Apa hal paling konyol yang pernah kamu lakukan demi seseorang?",
+
+"Pernahkah kamu mengirim pesan ke orang yang salah?",
+
+"Siapa teman di sini yang paling sering membuatmu tertawa?",
+
+"Kalau bisa bertukar kehidupan dengan seseorang selama sehari, siapa?",
+
+"Apa makanan paling aneh yang pernah kamu coba?",
+
+"Siapa yang paling kamu percaya untuk menyimpan rahasia?",
+
+"Apa hal yang sering kamu lakukan diam-diam?",
+
+"Kalau besok tiba-tiba kaya raya, apa yang kamu lakukan?",
+
+"Apa pengalaman paling lucu saat nongkrong?",
+
+"Pernahkah kamu pura-pura sibuk supaya tidak diajak pergi?",
+
+"Siapa orang yang paling ingin kamu ajak jalan-jalan?",
+
+"Apa cita-cita masa kecilmu?",
+
+"Hal apa yang paling membuatmu cepat bad mood?"
+
+];
+
+
+/* =========================================
+   DARE
+========================================= */
+
+const dares = [
+
+"Joget bebas selama 20 detik tanpa musik.",
+
+"Nyanyikan lagu favoritmu dengan suara paling lucu.",
+
+"Telepon teman dan bilang: Aku baru jadi artis!",
+
+"Lakukan 15 squat.",
+
+"Berbicara dengan suara bayi selama 1 menit.",
+
+"Pose seperti model selama 20 detik.",
+
+"Tirukan gaya orang di sebelahmu.",
+
+"Buat suara ayam selama 15 detik.",
+
+"Lakukan push-up sebanyak 10 kali.",
+
+"Berjalan seperti robot selama 30 detik.",
+
+"Nyanyikan lagu nasional dengan gaya rock.",
+
+"Biarkan pemain lain memilih gaya rambutmu selama 1 menit.",
+
+"Baca pesan terakhir yang aman dibaca di WhatsApp dengan suara keras.",
+
+"Lakukan dance selama 20 detik.",
+
+"Buat pantun spontan untuk pemain lain.",
+
+"Berpura-pura menjadi presenter berita selama 30 detik.",
+
+"Lakukan ekspresi marah, sedih, lalu bahagia.",
+
+"Berdiri dengan satu kaki selama 30 detik.",
+
+"Ucapkan alfabet dengan sangat cepat.",
+
+"Berikan pujian kepada setiap pemain.",
+
+"Berjalan seperti model catwalk selama 20 detik.",
+
+"Tirukan suara hewan yang dipilih pemain lain.",
+
+"Buat iklan lucu tentang benda yang ada di dekatmu.",
+
+"Bicara tanpa menggunakan huruf A selama 20 detik.",
+
+"Lakukan gaya selebriti selama 30 detik.",
+
+"Nyanyikan lagu anak-anak dengan gaya penyanyi rock.",
+
+"Buat pose superhero selama 20 detik.",
+
+"Berikan pidato kemenangan padahal tidak ada yang menang.",
+
+"Buat suara robot selama 30 detik.",
+
+"Tertawa palsu selama 15 detik sampai pemain lain ikut tertawa."
+
+];
+
+
+/* =========================================
+   START
+========================================= */
+
+function startGame(){
+
+    names = [
+
+        document.getElementById("p1").value.trim()
+        || "Pemain 1",
+
+        document.getElementById("p2").value.trim()
+        || "Pemain 2",
+
+        document.getElementById("p3").value.trim()
+        || "Pemain 3",
+
+        document.getElementById("p4").value.trim()
+        || "Pemain 4"
+
+    ];
+
+
+    currentPlayer = -1;
+
+    playerRotation = 0;
+
+    spinning = false;
+
+
+    document.getElementById("playerWheel")
+        .style.transform =
+        "rotate(0deg)";
+
+
+    for(let i=0;i<4;i++){
+
+        document.getElementById(
+            "label"+(i+1)
+        ).textContent = names[i];
+
+    }
+
+
+    document.getElementById("menu")
+        .style.display="none";
+
+
+    document.getElementById("game")
+        .style.display="block";
+
+
+    document.getElementById("result")
+        .style.display="none";
+
+
+    document.getElementById("choiceArea")
+        .classList.add("hidden");
+
+
+    document.getElementById("playerArea")
+        .classList.remove("hidden");
+
+
+    document.getElementById("spinBtn")
+        .disabled=false;
+
+
+    document.getElementById("spinBtn")
+        .classList.remove("hidden");
+
+
+    document.getElementById("status")
+        .textContent =
+        "🎡 Siapa yang kena duluan?";
+
+
+    stopVoice();
+
+}
+
+
+/* =========================================
+   SPIN PEMAIN
+========================================= */
+
+function spinPlayer(){
+
+    if(spinning) return;
+
+
+    spinning = true;
+
+
+    document.getElementById("spinBtn")
+        .disabled=true;
+
+
+    document.getElementById("result")
+        .style.display="none";
+
+
+    document.getElementById("choiceArea")
+        .classList.add("hidden");
+
+
+    document.getElementById("playerArea")
+        .classList.remove("hidden");
+
+
+    document.getElementById("status")
+        .textContent =
+        "🎡 MENENTUKAN PEMAIN...";
+
+
+    currentPlayer =
+        Math.floor(Math.random()*4);
+
+
+    const segmentCenter =
+        currentPlayer * 90 + 45;
+
+
+    const extraSpins = 6;
+
+
+    playerRotation +=
+        extraSpins * 360 +
+        (360 - segmentCenter);
+
+
+    document.getElementById("playerWheel")
+        .style.transform =
+        `rotate(${playerRotation}deg)`;
+
+
+    setTimeout(()=>{
+
+        document.getElementById("status")
+            .textContent =
+            "🔥 " +
+            names[currentPlayer] +
+            " TERPILIH!";
+
+
+        document.getElementById("selectedPlayer")
+            .textContent =
+            "🎯 " +
+            names[currentPlayer];
+
+
+        setTimeout(()=>{
+
+            spinning = false;
+
+            showChoice();
+
+        },800);
+
+
+    },4200);
+
+}
+
+
+/* =========================================
+   PILIH TRUTH / DARE
+========================================= */
+
+function showChoice(){
+
+    document.getElementById("playerArea")
+        .classList.add("hidden");
+
+
+    document.getElementById("spinBtn")
+        .classList.add("hidden");
+
+
+    document.getElementById("choiceArea")
+        .classList.remove("hidden");
+
+
+    document.getElementById("status")
+        .textContent =
+        "😈 " +
+        names[currentPlayer] +
+        ", pilih sendiri!";
+
+}
+
+
+/* =========================================
+   TRUTH
+========================================= */
+
+function chooseTruth(){
+
+    if(currentPlayer < 0) return;
+
+
+    const question =
+        truths[
+            Math.floor(
+                Math.random()*truths.length
+            )
+        ];
+
+
+    showChallenge(
+        "truth",
+        question
+    );
+
+}
+
+
+/* =========================================
+   DARE
+========================================= */
+
+function chooseDare(){
+
+    if(currentPlayer < 0) return;
+
+
+    let dare;
+
+
+    /*
+       KHUSUS PEMAIN DINI
+
+       Jika pemain terpilih bernama Dini,
+       maka Dare otomatis menjadi:
+       Nyatakan perasaan kepada Aidir.
+    */
+
+    if(
+        names[currentPlayer]
+        .trim()
+        .toLowerCase() === "dini"
+    ){
+
+        dare =
+            "Nyatakan perasaan kepada pemain bernama Aidir.";
+
+    }
+
+    else{
+
+        dare =
+            dares[
+                Math.floor(
+                    Math.random()*dares.length
+                )
+            ];
+
+    }
+
+
+    showChallenge(
+        "dare",
+        dare
+    );
+
+}
+
+
+/* =========================================
+   SHOW CHALLENGE
+========================================= */
+
+function showChallenge(type, text){
+
+    document.getElementById("choiceArea")
+        .classList.add("hidden");
+
+
+    document.getElementById("result")
+        .style.display="block";
+
+
+    document.getElementById("selectedPlayer")
+        .textContent =
+        "🎯 " +
+        names[currentPlayer];
+
+
+    const typeBox =
+        document.getElementById("type");
+
+
+    const challenge =
+        document.getElementById("challenge");
+
+
+    if(type === "truth"){
+
+        typeBox.textContent =
+            "💙 TRUTH";
+
+        typeBox.className =
+            "type truth";
+
+        challenge.textContent =
+            "❓ " + text;
+
+        document.getElementById("status")
+            .textContent =
+            "💙 WAKTUNYA TRUTH!";
+
+    }
+
+    else{
+
+        typeBox.textContent =
+            "❤️ DARE";
+
+        typeBox.className =
+            "type dare";
+
+        challenge.textContent =
+            "🔥 " + text;
+
+        document.getElementById("status")
+            .textContent =
+            "❤️ WAKTUNYA DARE!";
+
+    }
+
+
+    currentText = text;
+
+
+    /* BACA OTOMATIS */
+
+    setTimeout(()=>{
+
+        speakChallenge();
+
+    },500);
+
+}
+
+
+/* =========================================
+   TEXT TO SPEECH
+========================================= */
+
+function speakChallenge(){
+
+    if(!currentText) return;
+
+
+    if(!("speechSynthesis" in window)){
+
+        alert(
+            "Browser kamu tidak mendukung fitur suara."
+        );
+
+        return;
+
+    }
+
+
+    window.speechSynthesis.cancel();
+
+
+    let textToSpeak =
+        names[currentPlayer] +
+        ", " +
+        currentText;
+
+
+    const utterance =
+        new SpeechSynthesisUtterance(
+            textToSpeak
+        );
+
+
+    utterance.lang = "id-ID";
+
+    utterance.rate = 0.9;
+
+    utterance.pitch = 1.0;
+
+    utterance.volume = 1;
+
+
+    window.speechSynthesis.speak(
+        utterance
+    );
+
+}
+
+
+/* =========================================
+   STOP SUARA
+========================================= */
+
+function stopVoice(){
+
+    if("speechSynthesis" in window){
+
+        window.speechSynthesis.cancel();
+
+    }
+
+}
+
+
+/* =========================================
+   NEXT ROUND
+========================================= */
+
+function nextRound(){
+
+    if(spinning) return;
+
+
+    stopVoice();
+
+
+    document.getElementById("result")
+        .style.display="none";
+
+
+    document.getElementById("choiceArea")
+        .classList.add("hidden");
+
+
+    document.getElementById("playerArea")
+        .classList.remove("hidden");
+
+
+    document.getElementById("spinBtn")
+        .classList.remove("hidden");
+
+
+    document.getElementById("spinBtn")
+        .disabled=false;
+
+
+    document.getElementById("status")
+        .textContent =
+        "🎡 Siapa berikutnya?";
+
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+function resetGame(){
+
+    stopVoice();
+
+    location.reload();
+
+}
+
+</script>
+
+</body>
+</html>
